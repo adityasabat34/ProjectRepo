@@ -1,6 +1,6 @@
 import { Grid, Heading } from '@chakra-ui/react';
 import ProductCard from '../components/ProductCard';
-import products from '../products';
+import products from '../../../backend/data/products';
 
 const HomeScreen = () => {
   return (
