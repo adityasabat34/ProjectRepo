@@ -1,19 +1,22 @@
 import { Button, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { listProductsDetails } from '../actions/productActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+
 const ProductScreen = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
-  const [product, setProduct] = useState({});
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${id}`);
-      setProduct(data);
-    };
-    fetchProduct();
-  }, [id]);
+    dispatch(listProductsDetails(id));
+  }, [id, dispatch]);
 
   return (
     <>
@@ -28,72 +31,78 @@ const ProductScreen = () => {
         </Button>
       </Flex>
 
-      <Grid templateColumns="5fr 4fr 3fr" gap="10">
-        {/**column 1 */}
-        <Image
-          src={product.image}
-          alt={product.name}
-          borderRadius="md"
-          border="solid black 1px"
-        />
-
-        {/**column 2 */}
-
-        <Flex direction="column">
-          <Heading as="h5" fontSize="base" color="gray.500">
-            {product.brand}
-          </Heading>
-
-          <Heading as="h2" fontSize="4xl" mb="5" color="red.900">
-            {product.name}
-          </Heading>
-
-          <Rating
-            value={product.rating}
-            color="yellow.500"
-            text={`${product.numReviews} reviews`}
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message type="error">{error}</Message>
+      ) : (
+        <Grid templateColumns="5fr 4fr 3fr" gap="10">
+          {/**column 1 */}
+          <Image
+            src={product.image}
+            alt={product.name}
+            borderRadius="md"
+            border="solid black 1px"
           />
 
-          <Heading
-            as="h5"
-            fontSize="4xl"
-            fontWeight="bold"
-            color="teal.700"
-            my="5"
-          >
-            ₹{product.price}
-          </Heading>
+          {/**column 2 */}
 
-          <Text>{product.description}</Text>
-        </Flex>
+          <Flex direction="column">
+            <Heading as="h5" fontSize="base" color="gray.500">
+              {product.brand}
+            </Heading>
 
-        {/**column 3 */}
+            <Heading as="h2" fontSize="4xl" mb="5" color="red.900">
+              {product.name}
+            </Heading>
 
-        <Flex direction="column">
-          <Flex justifyContent="space-between" py="2">
-            <Text>Price:</Text>
-            <Text fontWeight="bold">₹{product.price}</Text>
+            <Rating
+              value={product.rating}
+              color="yellow.500"
+              text={`${product.numReviews} reviews`}
+            />
+
+            <Heading
+              as="h5"
+              fontSize="4xl"
+              fontWeight="bold"
+              color="teal.700"
+              my="5"
+            >
+              ₹{product.price}
+            </Heading>
+
+            <Text>{product.description}</Text>
           </Flex>
 
-          <Flex justifyContent="space-between" py="2" pb="10">
-            <Text>Status:</Text>
-            <Text fontWeight="bold">
-              {product.countInStock > 0 ? 'In Stock' : 'Not available'}
-            </Text>
-          </Flex>
+          {/**column 3 */}
 
-          <Button
-            bg="red.900"
-            colorScheme="blackAlpha"
-            my="2"
-            textTransform="uppercase"
-            letterSpacing="wide"
-            isDisabled={product.countInStock === 0}
-          >
-            Add to cart
-          </Button>
-        </Flex>
-      </Grid>
+          <Flex direction="column">
+            <Flex justifyContent="space-between" py="2">
+              <Text>Price:</Text>
+              <Text fontWeight="bold">₹{product.price}</Text>
+            </Flex>
+
+            <Flex justifyContent="space-between" py="2" pb="10">
+              <Text>Status:</Text>
+              <Text fontWeight="bold">
+                {product.countInStock > 0 ? 'In Stock' : 'Not available'}
+              </Text>
+            </Flex>
+
+            <Button
+              bg="red.900"
+              colorScheme="blackAlpha"
+              my="2"
+              textTransform="uppercase"
+              letterSpacing="wide"
+              isDisabled={product.countInStock === 0}
+            >
+              Add to cart
+            </Button>
+          </Flex>
+        </Grid>
+      )}
     </>
   );
 };
