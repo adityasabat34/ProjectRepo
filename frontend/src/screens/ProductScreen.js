@@ -1,8 +1,16 @@
-import { Button, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import {
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Text,
+  Select,
+} from '@chakra-ui/react';
+import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
 import Rating from '../components/Rating';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { listProductsDetails } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -10,13 +18,20 @@ import Message from '../components/Message';
 const ProductScreen = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const [qty, setQty] = useState(1);
+
   useEffect(() => {
     dispatch(listProductsDetails(id));
   }, [id, dispatch]);
+
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -90,6 +105,21 @@ const ProductScreen = () => {
               </Text>
             </Flex>
 
+            {product.countInStock > 0 && (
+              <Flex justifyContent="space-between" py="2">
+                <Text>Qty:</Text>
+                <Select
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  width="30%"
+                >
+                  {[...Array(product.countInStock).keys()].map((i) => (
+                    <option key={i + 1}>{i + 1}</option>
+                  ))}
+                </Select>
+              </Flex>
+            )}
+
             <Button
               bg="red.900"
               colorScheme="blackAlpha"
@@ -97,6 +127,7 @@ const ProductScreen = () => {
               textTransform="uppercase"
               letterSpacing="wide"
               isDisabled={product.countInStock === 0}
+              onClick={addToCartHandler}
             >
               Add to cart
             </Button>
