@@ -16,7 +16,6 @@ import {
   useNavigate,
   useSearchParams,
   Link as RouterLink,
-  redirect,
 } from 'react-router-dom';
 import { login } from '../actions/userAction';
 import Message from '../components/Message';
@@ -26,7 +25,7 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
-  const redirect = searchParams.get('/redirect') || '/';
+  const redirect = searchParams.get('redirect') || '/';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -79,7 +78,13 @@ const LoginScreen = () => {
             />
           </FormControl>
 
-          <Button type="submit" colorScheme="teal" mt="4" isLoading={loading}>
+          <Button
+            type="submit"
+            colorScheme="blackAlpha"
+            bgColor="red.900"
+            mt="4"
+            isLoading={loading}
+          >
             Login
           </Button>
         </form>
