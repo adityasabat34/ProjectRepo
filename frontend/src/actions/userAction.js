@@ -84,7 +84,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
 
     const {
       userLogin: { userInfo },
-    } = getState;
+    } = getState();
 
     const config = {
       headers: {
