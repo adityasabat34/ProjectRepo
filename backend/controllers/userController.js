@@ -2,6 +2,12 @@ import User from '../models/userModel.js';
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateWebToken.js';
 
+/**
+ * @desc		Auth User
+ * @route		POST /api/users/login
+ * @access	public
+ */
+
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -79,7 +85,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.name = req.body.name || user.name;
+    user.name = req.body.name || user.name; // not changed then remain as previous one
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
