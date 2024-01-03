@@ -3,9 +3,7 @@ import {
   Button,
   FormControl,
   FormLabel,
-  Link,
   Spacer,
-  Text,
   Grid,
   Heading,
   Input,
@@ -13,7 +11,7 @@ import {
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { updateUserProfile, getUserDetails } from '../actions/userAction';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
