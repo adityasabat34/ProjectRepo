@@ -8,6 +8,7 @@ const FormContainer = ({ children, width = 'xl' }) => {
       rounded="md"
       bgColor="white"
       p="10"
+      border="1.5px solid black"
       width={width}
     >
       {children}
