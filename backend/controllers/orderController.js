@@ -7,7 +7,7 @@ import Order from '../models/orderModel.js';
  * @access  private
  */
 
-const crateOrder = asyncHandler(async (req, res) => {
+const createOrder = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingAddress,
