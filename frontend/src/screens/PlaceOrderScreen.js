@@ -49,7 +49,7 @@ const PlaceOrderScreen = () => {
 
   useEffect(() => {
     if (success) {
-      navigate(`/order/${order.id}`);
+      navigate(`/order/${order._id}`);
     }
   }, [order, navigate, success]);
 
@@ -61,7 +61,7 @@ const PlaceOrderScreen = () => {
         {/* Column 1 */}
         <Flex direction="column" border="2px solid black" rounded="lg">
           {/* Shipping */}
-          <Box borderBottom="1px" py="6" borderColor="gray.300" padding="5">
+          <Box borderBottom="1px" py="6" borderColor="gray.500" padding="5">
             <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
               Shipping
             </Heading>
@@ -73,7 +73,7 @@ const PlaceOrderScreen = () => {
           </Box>
 
           {/* Payment Method */}
-          <Box borderBottom="1px" py="6" borderColor="gray.300" padding="5">
+          <Box borderBottom="1px" py="6" borderColor="gray.500" padding="5">
             <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
               Payment Method
             </Heading>
@@ -84,7 +84,7 @@ const PlaceOrderScreen = () => {
           </Box>
 
           {/* Order Items */}
-          <Box borderBottom="1px" py="6" borderColor="gray.300" padding="5">
+          <Box borderBottom="1px" py="6" borderColor="gray.500" padding="5">
             <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
               Order Items
             </Heading>
