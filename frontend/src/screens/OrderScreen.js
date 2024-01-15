@@ -33,7 +33,7 @@ const OrderScreen = () => {
       <Flex w="full" py="5" direction="column">
         <Grid templateColumns="3fr 2fr" gap="20">
           {/**Column 1 */}
-          <Flex direction="column">
+          <Flex direction="column" border="2px solid black" rounded="lg" p="5">
             {/**Shipping */}
             <Box borderBottom="1px" py="6" borderColor="gray.300">
               <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
@@ -133,13 +133,14 @@ const OrderScreen = () => {
 
           <Flex
             direction="column"
-            bgColor="white"
+            bgColor="gray.100"
             justifyContent="space-between"
             py="8"
             px="8"
             shadow="md"
             rounded="lg"
             borderColor="gray.500"
+            border="2px solid black"
           >
             <Box>
               <Heading mb="6" as="h2" fontSize="3xl" fontWeight="bold">
