@@ -70,7 +70,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const orderPay =
+export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
     try {
       dispatch({ type: ORDER_PAY_REQUEST });
@@ -95,7 +95,7 @@ export const orderPay =
       dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
     } catch (err) {
       dispatch({
-        type: ORDER_CREATE_FAIL,
+        type: ORDER_PAY_FAIL,
         payload:
           err.response && err.response.data.message
             ? err.response.data.message
