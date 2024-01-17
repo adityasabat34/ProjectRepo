@@ -38,7 +38,7 @@ const Header = () => {
       align="center"
       justifyContent="space-between"
       wrap="wrap"
-      py="5"
+      py="6"
       px="7"
       bgGradient="linear(to-r, gray.900,red.900,gray.500, gray.900)"
       w="100%"
