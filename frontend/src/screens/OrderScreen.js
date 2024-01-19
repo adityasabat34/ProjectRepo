@@ -5,7 +5,10 @@ import { useEffect } from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import { ORDER_PAY_RESET } from '../constants/orderConstants';
+import {
+  ORDER_DETAILS_RESET,
+  ORDER_PAY_RESET,
+} from '../constants/orderConstants';
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const OrderScreen = () => {
