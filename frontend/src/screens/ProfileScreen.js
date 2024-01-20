@@ -23,10 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { updateUserProfile, getUserDetails } from '../actions/userAction';
-import {
-  USER_DETAILS_RESET,
-  USER_UPDATE_PROFILE_RESET,
-} from '../constants/userConstants';
+import { USER_DETAILS_RESET } from '../constants/userConstants';
 import { IoWarning } from 'react-icons/io5';
 import { ORDER_DETAILS_RESET } from '../constants/orderConstants';
 
