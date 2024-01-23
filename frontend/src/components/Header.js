@@ -82,6 +82,7 @@ const Header = () => {
               as={Button}
               rightIcon={<IoChevronDown />}
               _hover={{ textDecor: 'none', opacity: '0.7' }}
+              border="1px solid black"
             >
               {userInfo.name}
             </MenuButton>
@@ -98,6 +99,33 @@ const Header = () => {
             label="Login"
             icon={<Icon as={HiUser} mr="1" w="4" h="4" />}
           />
+        )}
+
+        {userInfo && userInfo.isAdmin && (
+          <Menu>
+            <MenuButton
+              as={Button}
+              ml="5"
+              fontSize="sm"
+              fontWeight="semibold"
+              textTransform="uppercase"
+              _hover={{ textDecor: 'none', opacity: '0.7' }}
+              border="1px solid black"
+            >
+              Manage <Icon as={IoChevronDown} />
+            </MenuButton>
+            <MenuList>
+              <MenuItem as={RouterLink} to="/admin/userlist">
+                All Users
+              </MenuItem>
+              <MenuItem as={RouterLink} to="/admin/productlist">
+                All Products
+              </MenuItem>
+              <MenuItem as={RouterLink} to="/admin/orderlist">
+                All Orders
+              </MenuItem>
+            </MenuList>
+          </Menu>
         )}
       </Box>
     </Flex>
