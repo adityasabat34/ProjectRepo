@@ -20,7 +20,7 @@ import {
 } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { listUsers } from '../actions/userAction';
+import { deleteUser, listUsers } from '../actions/userAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -34,16 +34,21 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
       navigate('/login');
     }
-  }, [dispatch, userInfo, navigate]);
+  }, [dispatch, userInfo, navigate, success]);
 
   const deleteHandler = (id) => {
-    // DELETE
+    if (window.confirm('Are you sure??')) {
+      dispatch(deleteUser(id));
+    }
   };
   return (
     <>
@@ -55,7 +60,14 @@ const UserListScreen = () => {
       ) : error ? (
         <Message type="error">{error}</Message>
       ) : (
-        <Box bgColor="white" rounded="lg" shadow="lg" px="5" py="5">
+        <Box
+          bgColor="white"
+          rounded="lg"
+          shadow="lg"
+          px="5"
+          py="5"
+          border="1px solid black"
+        >
           <Table variant="striped" colorScheme="gray" size="sm">
             <Thead>
               <Tr>
