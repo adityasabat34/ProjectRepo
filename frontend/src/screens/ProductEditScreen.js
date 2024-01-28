@@ -15,6 +15,7 @@ import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import axios from 'axios';
 
 const ProductEditScreen = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,25 @@ const ProductEditScreen = () => {
     );
   };
 
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await axios.post(`/api/uploads`, formData, config);
+      setImage(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <Flex mb="5">
@@ -132,6 +152,7 @@ const ProductEditScreen = () => {
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                 />
+                <Input type="file" onChange={uploadFileHandler} />
               </FormControl>
               <Spacer h="3" />
 
