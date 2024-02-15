@@ -37,7 +37,12 @@ const ShippingScreen = () => {
   };
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Flex
+      w="full"
+      alignItems="center"
+      justifyContent="center"
+      py={{ base: '5', md: '10' }} // Adjusting vertical padding for responsiveness
+    >
       <FormContainer>
         <Heading as="h2" mb="8" fontSize="3xl">
           Shipping
@@ -108,6 +113,7 @@ const ShippingScreen = () => {
             colorScheme="Alphablack"
             bgColor="red.900"
             mt="4"
+            w="full" // Ensuring the button takes full width on all screen sizes
           >
             Continue
           </Button>

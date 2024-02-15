@@ -98,15 +98,20 @@ const ProductEditScreen = () => {
 
   return (
     <>
-      <Flex mb="5">
+      <Flex mb={{ base: '3', md: '5' }}>
         <Button as={RouterLink} to="/" border="1px solid black">
           Go Back
         </Button>
       </Flex>
 
-      <Flex w="full" alignItems="center" justifyContent="center" py="5">
+      <Flex
+        w="full"
+        alignItems="center"
+        justifyContent="center"
+        py={{ base: '3', md: '5' }}
+      >
         <FormContainer>
-          <Heading as="h1" mb="8" fontSize="3xl">
+          <Heading as="h1" mb="8" fontSize={{ base: '2xl', md: '3xl' }}>
             Edit Product
           </Heading>
 
@@ -129,7 +134,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* PRICE */}
               <FormControl id="price" isRequired>
@@ -141,7 +146,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* IMAGE */}
               <FormControl id="image" isRequired>
@@ -154,7 +159,7 @@ const ProductEditScreen = () => {
                 />
                 <Input type="file" onChange={uploadFileHandler} />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* DESCRIPTION */}
               <FormControl id="description" isRequired>
@@ -166,7 +171,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* BRAND */}
               <FormControl id="brand" isRequired>
@@ -178,7 +183,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setBrand(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* CATEGORY */}
               <FormControl id="category" isRequired>
@@ -190,7 +195,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setCategory(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               {/* COUNT IN STOCK */}
               <FormControl id="countInStock" isRequired>
@@ -202,7 +207,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setCountInStock(e.target.value)}
                 />
               </FormControl>
-              <Spacer h="3" />
+              <Spacer h={{ base: '2', md: '3' }} />
 
               <Button
                 type="submit"
@@ -221,5 +226,4 @@ const ProductEditScreen = () => {
     </>
   );
 };
-
 export default ProductEditScreen;

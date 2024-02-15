@@ -82,14 +82,20 @@ const ProductListScreen = () => {
 
   return (
     <>
-      <Flex mb="5" alignItems="center" justifyContent="space-between">
-        <Heading as="h1" fontSize="3xl" mb="5">
+      <Flex
+        mb={{ base: '3', md: '5' }}
+        direction={{ base: 'column', md: 'row' }}
+        alignItems={{ base: 'stretch', md: 'center' }}
+        justifyContent="space-between"
+      >
+        <Heading as="h1" fontSize="3xl" mb={{ base: '3', md: '0' }}>
           Product
         </Heading>
         <Button
           onClick={createProductHandler}
           colorScheme="Alphablack"
           bgColor="red.900"
+          mt={{ base: '3', md: '0' }}
         >
           <Icon as={IoAdd} mr="2" fontSize="xl" fontWeight="bold" />
           Create Product
@@ -114,6 +120,7 @@ const ProductListScreen = () => {
           px="5"
           py="5"
           border="1px solid black"
+          mt="3"
         >
           <Table variant="striped" colorScheme="gray" size="sm">
             <Thead>
@@ -137,7 +144,7 @@ const ProductListScreen = () => {
                   <Td>
                     <Flex justifyContent="flex-end" alignItems="center">
                       <Button
-                        mr="4"
+                        mr={{ base: '2', md: '4' }}
                         as={RouterLink}
                         to={`/admin/product/${product._id}/edit`}
                         colorScheme="teal"
@@ -145,7 +152,7 @@ const ProductListScreen = () => {
                         <Icon as={IoPencilSharp} color="white" size="sm" />
                       </Button>
                       <Button
-                        mr="4"
+                        mr={{ base: '2', md: '4' }}
                         colorScheme="red"
                         onClick={() => deleteHandler(product._id)}
                       >

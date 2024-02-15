@@ -58,7 +58,7 @@ const UserEditScreen = () => {
   };
 
   return (
-    <>
+    <Flex direction="column" alignItems="center" py={{ base: '5', md: '10' }}>
       <Flex mb="5">
         <Button
           as={RouterLink}
@@ -69,69 +69,68 @@ const UserEditScreen = () => {
           Go Back
         </Button>
       </Flex>
-      <Flex w="full" alignItems="center" justifyContent="center" py="5">
-        <FormContainer>
-          <Heading as="h1" mb="8" fontSize="3xl">
-            Edit User
-          </Heading>
+      <FormContainer>
+        <Heading as="h1" mb="8" fontSize="3xl" textAlign="center">
+          Edit User
+        </Heading>
 
-          {loadingUpdate && <Loader />}
-          {errorUpdate && <Message type="error">{errorUpdate}</Message>}
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message type="error">{errorUpdate}</Message>}
 
-          {loading ? (
-            <Loader />
-          ) : error ? (
-            <Message type="error">{error}</Message>
-          ) : (
-            <form onSubmit={submitHandler}>
-              <FormControl id="name" isRequired>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Enter full name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </FormControl>
-              <Spacer h="3" />
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message type="error">{error}</Message>
+        ) : (
+          <form onSubmit={submitHandler}>
+            <FormControl id="name" isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </FormControl>
+            <Spacer h="3" />
 
-              <FormControl id="email" isRequired>
-                <FormLabel>Email Address</FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Enter email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </FormControl>
-              <Spacer h="3" />
+            <FormControl id="email" isRequired>
+              <FormLabel>Email Address</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
+            <Spacer h="3" />
 
-              <FormControl id="isAdmin" isRequired={false}>
-                <FormLabel>Is Admin?</FormLabel>
-                <Checkbox
-                  size="lg"
-                  colorScheme="teal"
-                  checked={isAdmin}
-                  onChange={(e) => setIsAdmin(e.target.checked)}
-                >
-                  Is Admin?
-                </Checkbox>
-              </FormControl>
-              <Spacer h="3" />
-
-              <Button
-                type="submit"
-                isLoading={loading}
+            <FormControl id="isAdmin" isRequired={false}>
+              <FormLabel>Is Admin?</FormLabel>
+              <Checkbox
+                size="lg"
                 colorScheme="teal"
-                mt="4"
+                checked={isAdmin}
+                onChange={(e) => setIsAdmin(e.target.checked)}
               >
-                Update
-              </Button>
-            </form>
-          )}
-        </FormContainer>
-      </Flex>
-    </>
+                Is Admin?
+              </Checkbox>
+            </FormControl>
+            <Spacer h="3" />
+
+            <Button
+              type="submit"
+              isLoading={loading}
+              colorScheme="teal"
+              mt="4"
+              w="full"
+            >
+              Update
+            </Button>
+          </form>
+        )}
+      </FormContainer>
+    </Flex>
   );
 };
 

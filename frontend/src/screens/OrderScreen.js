@@ -1,12 +1,12 @@
 import {
-  Flex,
-  Text,
-  Heading,
-  Grid,
   Box,
-  Link,
-  Image,
   Button,
+  Flex,
+  Heading,
+  Link,
+  Text,
+  Image,
+  Grid,
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -71,13 +71,21 @@ const OrderScreen = () => {
     <Message type="error">{error}</Message>
   ) : (
     <>
-      <Flex w="full" py="5" direction="column">
-        <Grid templateColumns="3fr 2fr" gap="20">
+      <Flex direction="column" alignItems="center" py="5">
+        <Heading as="h1" fontSize="3xl" mb="5">
+          Order Details
+        </Heading>
+        <Grid
+          templateColumns={{ base: '1fr', md: '3fr 2fr' }}
+          gap={{ base: '6', md: '20' }}
+          width="100%"
+          maxW="1200px"
+        >
           {/**Column 1 */}
-          <Flex direction="column" border="2px solid black" rounded="lg" p="5">
+          <Box>
             {/**Shipping */}
-            <Box borderBottom="1px" py="6" borderColor="gray.300">
-              <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
+            <Box borderBottom="1px" py="6">
+              <Heading as="h2" mb="3" fontSize="xl" fontWeight="semibold">
                 Shipping
               </Heading>
               <Text>
@@ -105,8 +113,8 @@ const OrderScreen = () => {
 
             {/**Payment Method */}
 
-            <Box borderBottom="1px" py="6" borderColor="gray.500">
-              <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
+            <Box borderBottom="1px" py="6">
+              <Heading as="h2" mb="3" fontSize="xl" fontWeight="semibold">
                 Payment Method
               </Heading>
 
@@ -127,9 +135,9 @@ const OrderScreen = () => {
 
             {/**Order Items */}
 
-            <Box borderBottom="1px" py="6" borderColor="gray.500">
-              <Heading as="h2" fontSize="2xl" fontWeight="semibold">
-                Order Itmes
+            <Box borderBottom="1px" py="6">
+              <Heading as="h2" fontSize="xl" fontWeight="semibold">
+                Order Items
               </Heading>
               <Box>
                 {order.orderItems.length === 0 ? (
@@ -170,83 +178,48 @@ const OrderScreen = () => {
                 )}
               </Box>
             </Box>
-          </Flex>
+          </Box>
 
-          {/**column 2 */}
-
-          <Flex
-            direction="column"
-            bgColor="gray.100"
-            justifyContent="space-between"
-            py="8"
-            px="8"
-            shadow="md"
-            rounded="lg"
-            borderColor="gray.500"
-            border="2px solid black"
-          >
+          {/**Column 2 */}
+          <Flex direction="column" maxW="400px">
             <Box>
-              <Heading mb="6" as="h2" fontSize="3xl" fontWeight="bold">
+              <Heading mb="6" fontSize="xl" fontWeight="bold">
                 Order Summary
               </Heading>
 
               {/**Items price */}
-              <Flex
-                borderBottom="1px"
-                py="2"
-                borderColor="gray.500"
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Box borderBottom="1px" py="2">
                 <Text fontSize="xl">Items</Text>
                 <Text fontWeight="bold" fontSize="xl">
                   ₹{order.itemsPrice}
                 </Text>
-              </Flex>
+              </Box>
 
-              <Flex
-                borderBottom="1px"
-                py="2"
-                borderColor="gray.500"
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Box borderBottom="1px" py="2">
                 <Text fontSize="xl">Shipping</Text>
                 <Text fontWeight="bold" fontSize="xl">
                   ₹{order.shippingPrice}
                 </Text>
-              </Flex>
+              </Box>
 
-              <Flex
-                borderBottom="1px"
-                py="2"
-                borderColor="gray.500"
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Box borderBottom="1px" py="2">
                 <Text fontSize="xl">Tax</Text>
                 <Text fontWeight="bold" fontSize="xl">
                   ₹{order.taxPrice}
                 </Text>
-              </Flex>
+              </Box>
 
-              <Flex
-                borderBottom="1px"
-                py="2"
-                borderColor="gray.500"
-                alignItems="center"
-                justifyContent="space-between"
-              >
+              <Box borderBottom="1px" py="2">
                 <Text fontSize="xl">Total</Text>
                 <Text fontWeight="bold" fontSize="xl">
                   ₹{order.totalPrice}
                 </Text>
-              </Flex>
+              </Box>
             </Box>
 
             {/**Payment button */}
             {!order.isPaid && (
-              <Box>
+              <Box mt="4">
                 {loadingPay ? (
                   <Loader />
                 ) : (
@@ -286,6 +259,7 @@ const OrderScreen = () => {
                 )}
               </Box>
             )}
+
             {/* Order Deliver Button */}
             {loadingDeliver && <Loader />}
             {userInfo &&
@@ -296,6 +270,7 @@ const OrderScreen = () => {
                   type="button"
                   colorScheme="teal"
                   onClick={deliverHandler}
+                  mt="4"
                 >
                   Mark as delivered
                 </Button>

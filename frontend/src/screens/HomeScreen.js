@@ -15,21 +15,32 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
+
   return (
     <>
-      <Heading as="h2" mb="8" fontSize="xl" p="1">
+      <Heading
+        as="h2"
+        mb="8"
+        fontSize={{ base: 'xl', md: '2xl' }}
+        p="1"
+        textAlign="center"
+      >
         Latest Products
       </Heading>
 
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message />
+        <Message type="error">{error}</Message>
       ) : (
         <Grid
-          templateColumns="1fr 1fr 1fr 1fr"
-          gap="8"
-          // bgGradient="linear(to-r, gray.800, gray.400, gray.800)"
+          templateColumns={{
+            base: '1fr',
+            md: 'repeat(2, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          }}
+          gap={{ base: '4', md: '8' }}
+          justifyContent="center" // Center grid items horizontally
         >
           {products.map((prod) => (
             <ProductCard key={prod._id} product={prod} />

@@ -80,13 +80,18 @@ const ProductScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <>
-          <Grid templateColumns="5fr 4fr 3fr" gap="10">
+          <Grid
+            templateColumns={{ base: '1fr', md: '5fr 4fr 3fr' }} // Adjust column layout for mobile and above
+            gap={{ base: '5', md: '10' }} // Adjust gap between columns for mobile and above
+          >
             {/**column 1 */}
             <Image
               src={product.image}
               alt={product.name}
               borderRadius="md"
               border="solid black 1px"
+              mx="auto" // Center image on mobile
+              mb={{ base: '5', md: '0' }} // Adjust margin bottom for mobile and above
             />
 
             {/**column 2 */}
@@ -104,6 +109,7 @@ const ProductScreen = () => {
                 value={product.rating}
                 color="yellow.500"
                 text={`${product.numReviews} reviews`}
+                mb="5" // Adjust margin bottom for mobile and above
               />
 
               <Heading
@@ -111,12 +117,12 @@ const ProductScreen = () => {
                 fontSize="4xl"
                 fontWeight="bold"
                 color="teal.700"
-                my="5"
+                mb="5" // Adjust margin bottom for mobile and above
               >
                 ₹{product.price}
               </Heading>
 
-              <Text>{product.description}</Text>
+              <Text mb="5">{product.description}</Text>
             </Flex>
 
             {/**column 3 */}

@@ -52,7 +52,12 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Flex
+      w="full"
+      alignItems="center"
+      justifyContent="center"
+      py={{ base: '5', md: '10' }}
+    >
       <FormContainer>
         <Heading as="h1" mb="8" fontSize="3xl">
           Register
@@ -118,12 +123,13 @@ const RegisterScreen = () => {
             bgColor="red.900"
             mt="4"
             isLoading={loading}
+            w="full"
           >
             Register
           </Button>
         </form>
 
-        <Flex pt="10">
+        <Flex pt="10" justifyContent="center">
           <Text fontWeight="semibold">
             Already a Customer?{' '}
             <Link as={RouterLink} to="/login">

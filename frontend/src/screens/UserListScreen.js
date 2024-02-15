@@ -50,8 +50,9 @@ const UserListScreen = () => {
       dispatch(deleteUser(id));
     }
   };
+
   return (
-    <>
+    <Flex direction="column" alignItems="center" py={{ base: '5', md: '10' }}>
       <Heading as="h1" fontSize="3xl" mb="5">
         Users
       </Heading>
@@ -61,6 +62,7 @@ const UserListScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Box
+          w={{ base: '100%', md: '80%' }}
           bgColor="white"
           rounded="lg"
           shadow="lg"
@@ -129,7 +131,7 @@ const UserListScreen = () => {
           </Table>
         </Box>
       )}
-    </>
+    </Flex>
   );
 };
 

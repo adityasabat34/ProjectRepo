@@ -45,16 +45,21 @@ const LoginScreen = () => {
   };
 
   return (
-    <Flex w="100" direction="center" justifyContent="center" py="5">
+    <Flex
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="100vh"
+    >
       <FormContainer>
-        <Heading as="h1" mb="8" fontSize="3xl">
+        <Heading as="h1" mb="8" fontSize={{ base: '3xl', md: '4xl' }}>
           Login
         </Heading>
 
         {error && <Message type="error">{error}</Message>}
 
         <form onSubmit={submitHandler}>
-          <FormControl id="email">
+          <FormControl id="email" mb="4">
             <FormLabel htmlFor="email">Email address</FormLabel>
             <Input
               id="email"
@@ -65,9 +70,7 @@ const LoginScreen = () => {
             />
           </FormControl>
 
-          <Spacer h="3" />
-
-          <FormControl id="password">
+          <FormControl id="password" mb="4">
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
               id="password"
@@ -82,21 +85,21 @@ const LoginScreen = () => {
             type="submit"
             colorScheme="blackAlpha"
             bgColor="red.900"
-            mt="4"
             isLoading={loading}
+            w="100%"
           >
             Login
           </Button>
         </form>
 
-        <Flex pt="10">
-          <Text fontWeight="semibold">
-            New Customer?{' '}
-            <Link as={RouterLink} to="/register">
-              Click here to register
-            </Link>
-          </Text>
-        </Flex>
+        <Spacer height="4" />
+
+        <Text fontWeight="semibold" mt="4">
+          New Customer?{' '}
+          <Link as={RouterLink} to="/register" color="blue.500">
+            Click here to register
+          </Link>
+        </Text>
       </FormContainer>
     </Flex>
   );

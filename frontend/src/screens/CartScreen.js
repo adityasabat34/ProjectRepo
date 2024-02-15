@@ -30,8 +30,6 @@ const CartScreen = () => {
   const [searchParams] = useSearchParams();
   let qty = searchParams.get('qty');
 
-  //   console.log(id, qty);
-
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -48,130 +46,135 @@ const CartScreen = () => {
   const checkoutHandler = () => {
     navigate(`/login?redirect=/shipping`);
   };
+
   return (
-    <Grid>
+    <Grid
+      templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+      gap={{ base: '5', md: '10' }}
+    >
       <Box>
-        <Heading mb="8">Shopping Cart</Heading>
-        <Flex>
-          {cartItems.length === 0 ? (
-            <Message>
-              Your cart is empty.{' '}
-              <Link as={RouterLink} to="/">
-                Go Back
-              </Link>
-            </Message>
-          ) : (
-            <Grid templateColumns="4fr 2fr" gap="10" w="full">
-              <Flex direction="column">
-                {cartItems.map((item) => (
-                  <Grid
-                    key={item.product}
-                    size="100%"
-                    alignItems="center"
-                    justifyContent="space-between"
-                    borderBottom="1px"
-                    borderColor="gray.200"
-                    border="0.5px solid black"
-                    py="4"
-                    px="2"
-                    rounded="lg"
-                    _hover={{ bgColor: 'gray.50' }}
-                    templateColumns="1fr 4fr 2fr 2fr 2fr"
-                  >
-                    {/* Product Image */}
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      borderRadius="lg"
-                      height="14"
-                      width="14"
-                      objectFit="cover"
-                      border="0.2px solid black"
-                    />
-
-                    {/* Product Name */}
-                    <Text fontWeight="semibold" fontSize="lg">
-                      <Link as={RouterLink} to={`/product/${item.product}`}>
-                        {item.name}
-                      </Link>
-                    </Text>
-
-                    {/* Product Price */}
-                    <Text fontWeight="semibold" fontSize="lg">
-                      ₹{item.price}
-                    </Text>
-
-                    {/* Quantity Select Box */}
-                    <Select
-                      value={item.qty}
-                      onChange={(e) =>
-                        dispatch(addToCart(item.product, +e.target.value))
-                      }
-                      width="20"
-                    >
-                      {[...Array(item.countInStock).keys()].map((i) => (
-                        <option key={i + 1}>{i + 1}</option>
-                      ))}
-                    </Select>
-
-                    {/* Delete Button */}
-                    <Button
-                      type="button"
-                      colorScheme="red"
-                      onClick={() => removeFromCartHandler(item.product)}
-                      border="0.2px solid black"
-                    >
-                      <Icon as={IoTrashBinSharp} />
-                    </Button>
-                  </Grid>
-                ))}
-              </Flex>
-
-              {/* Second Column */}
-              <Flex
-                direction="column"
-                bgColor="gray.200"
-                rounded="md"
-                padding="5"
-                height="48"
+        <Heading mb="8" textAlign="center">
+          Shopping Cart
+        </Heading>
+        {cartItems.length === 0 ? (
+          <Message>
+            Your cart is empty.{' '}
+            <Link as={RouterLink} to="/">
+              Go Back
+            </Link>
+          </Message>
+        ) : (
+          <Flex direction="column">
+            {cartItems.map((item) => (
+              <Grid
+                key={item.product}
+                size="100%"
+                alignItems="center"
                 justifyContent="space-between"
-                border="1px solid black"
+                borderBottom="1px"
+                borderColor="gray.200"
+                border="0.5px solid black"
+                py="4"
+                px="2"
+                rounded="lg"
+                _hover={{ bgColor: 'gray.50' }}
+                templateColumns={{ base: '1fr', md: '1fr 1fr 1fr 1fr' }}
               >
-                <Flex direction="column">
-                  <Heading as="h2" fontSize="2xl" mb="2">
-                    Subtotal (
-                    {cartItems.reduce((acc, currVal) => acc + currVal.qty, 0)}{' '}
-                    items)
-                  </Heading>
-                  <Text
-                    fontWeight="bold"
-                    fontSize="2xl"
-                    color="blue.600"
-                    mb="4"
-                  >
-                    ₹
-                    {cartItems.reduce(
-                      (acc, currVal) => acc + currVal.qty * currVal.price,
-                      0
-                    )}
-                  </Text>
+                {/* Product Image */}
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  borderRadius="lg"
+                  height="14"
+                  width="14"
+                  objectFit="cover"
+                  border="0.2px solid black"
+                />
 
-                  <Button
-                    type="button"
-                    disabled={cartItems.length === 0}
-                    size="lg"
-                    colorScheme="blackAlpha"
-                    bgColor="red.900"
-                    onClick={checkoutHandler}
-                  >
-                    Proceed to checkout
-                  </Button>
-                </Flex>
-              </Flex>
-            </Grid>
-          )}
-        </Flex>
+                {/* Product Name */}
+                <Text fontWeight="semibold" fontSize={{ base: 'md', md: 'lg' }}>
+                  <Link as={RouterLink} to={`/product/${item.product}`}>
+                    {item.name}
+                  </Link>
+                </Text>
+
+                {/* Product Price */}
+                <Text fontWeight="semibold" fontSize={{ base: 'md', md: 'lg' }}>
+                  ₹{item.price}
+                </Text>
+
+                {/* Quantity Select Box */}
+                <Select
+                  value={item.qty}
+                  onChange={(e) =>
+                    dispatch(addToCart(item.product, +e.target.value))
+                  }
+                  width={{ base: '20', md: 'auto' }}
+                >
+                  {[...Array(item.countInStock).keys()].map((i) => (
+                    <option key={i + 1}>{i + 1}</option>
+                  ))}
+                </Select>
+
+                {/* Delete Button */}
+                <Button
+                  type="button"
+                  colorScheme="red"
+                  onClick={() => removeFromCartHandler(item.product)}
+                  border="0.2px solid black"
+                >
+                  <Icon as={IoTrashBinSharp} />
+                </Button>
+              </Grid>
+            ))}
+          </Flex>
+        )}
       </Box>
+
+      <Flex
+        direction="column"
+        bgColor="gray.200"
+        rounded="md"
+        padding="5"
+        height="fit-content"
+        justifyContent="space-between"
+        border="1px solid black"
+      >
+        <Heading
+          as="h2"
+          fontSize={{ base: 'xl', md: '2xl' }}
+          mb="2"
+          textAlign="center"
+        >
+          Subtotal ({cartItems.reduce((acc, currVal) => acc + currVal.qty, 0)}{' '}
+          items)
+        </Heading>
+        <Text
+          fontWeight="bold"
+          fontSize={{ base: 'xl', md: '2xl' }}
+          color="blue.600"
+          mb="4"
+          textAlign="center"
+        >
+          ₹
+          {cartItems.reduce(
+            (acc, currVal) => acc + currVal.qty * currVal.price,
+            0
+          )}
+        </Text>
+
+        <Button
+          type="button"
+          disabled={cartItems.length === 0}
+          size="lg"
+          colorScheme="blackAlpha"
+          bgColor="red.900"
+          onClick={checkoutHandler}
+          mx="auto"
+        >
+          Proceed to checkout
+        </Button>
+      </Flex>
     </Grid>
   );
 };

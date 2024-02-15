@@ -10,6 +10,7 @@ import {
   Th,
   Thead,
   Tr,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { IoCloseCircleSharp } from 'react-icons/io5';
@@ -37,6 +38,9 @@ const OrderListScreen = () => {
     }
   }, [dispatch, userInfo, navigate]);
 
+  // Responsive styles for table cells
+  const tableCellSize = useBreakpointValue({ base: 'xs', md: 'sm', lg: 'md' });
+
   return (
     <>
       <Heading as="h1" fontSize="3xl" mb="5">
@@ -48,8 +52,15 @@ const OrderListScreen = () => {
       ) : error ? (
         <Message type="error">{error}</Message>
       ) : (
-        <Box bgColor="white" rounded="lg" shadow="lg" px="5" py="5">
-          <Table variant="striped" colorScheme="gray" size="sm">
+        <Box
+          bgColor="white"
+          rounded="lg"
+          shadow="lg"
+          px="5"
+          py="5"
+          overflowX="auto"
+        >
+          <Table variant="striped" colorScheme="gray" size={tableCellSize}>
             <Thead>
               <Tr>
                 <Th>ID</Th>

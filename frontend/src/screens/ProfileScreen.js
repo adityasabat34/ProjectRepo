@@ -77,8 +77,18 @@ const ProfileScreen = () => {
   };
 
   return (
-    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }} py="5" gap="10">
-      <Flex w="full" alignItems="center" justifyContent="center" py="5">
+    <Grid
+      templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+      py={{ base: '5', md: '10' }}
+      gap={{ base: '5', md: '10' }}
+    >
+      <Flex
+        w="full"
+        alignItems="center"
+        justifyContent="center"
+        py="5"
+        order={{ base: 2, md: 1 }}
+      >
         <FormContainer>
           <Heading as="h1" mb="8" fontSize="3xl">
             User Profile
@@ -144,6 +154,7 @@ const ProfileScreen = () => {
               bgColor="red.900"
               mt="4"
               isLoading={loading}
+              w="full"
             >
               Update
             </Button>
@@ -151,7 +162,7 @@ const ProfileScreen = () => {
         </FormContainer>
       </Flex>
 
-      <Flex direction="column">
+      <Flex direction="column" order={{ base: 1, md: 2 }}>
         <Heading as="h2" mb="4">
           My Orders
         </Heading>

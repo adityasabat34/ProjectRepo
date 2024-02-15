@@ -28,6 +28,7 @@ const App = () => {
         direction="column"
         py="6"
         px="6"
+        height="max-content"
         bgGradient="linear(to-r, gray.200, gray.400, white, gray.400, gray.200)"
       >
         <Routes>

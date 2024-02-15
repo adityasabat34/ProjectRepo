@@ -54,12 +54,19 @@ const PlaceOrderScreen = () => {
   }, [order, navigate, success]);
 
   return (
-    <Flex w="full" direction="column" py="5">
+    <Flex w="full" direction="column" p={{ base: '5', md: '10' }}>
       <CheckoutSteps step1 step2 step3 step4 />
 
-      <Grid templateColumns="3fr 2fr" gap="20">
+      <Grid
+        templateColumns={{ base: '1fr', md: '3fr 2fr' }}
+        gap={{ base: '5', md: '20' }}
+      >
         {/* Column 1 */}
-        <Flex direction="column" border="2px solid black" rounded="lg">
+        <Flex
+          direction="column"
+          border={{ base: 'none', md: '2px solid black' }}
+          rounded="lg"
+        >
           {/* Shipping */}
           <Box borderBottom="1px" py="6" borderColor="gray.500" padding="5">
             <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
@@ -139,7 +146,7 @@ const PlaceOrderScreen = () => {
           shadow="md"
           rounded="lg"
           borderColor="gray.300"
-          border="2px solid black"
+          border={{ base: 'none', md: '2px solid black' }}
         >
           <Box>
             <Heading mb="6" as="h2" fontSize="3xl" fontWeight="bold">
