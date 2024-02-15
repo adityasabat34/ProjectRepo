@@ -139,6 +139,7 @@ const CartScreen = () => {
         height="fit-content"
         justifyContent="space-between"
         border="1px solid black"
+        mt="20"
       >
         <Heading
           as="h2"
