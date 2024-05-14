@@ -36,8 +36,7 @@ const HomeScreen = () => {
         <Grid
           templateColumns={{
             base: '1fr 1fr',
-            sm: 'repeat(2, 1fr)', // Adjust for small screens
-            md: 'repeat(3, 1fr)', // Adjust for medium screens
+            md: 'repeat(3, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}
           gap={{ base: '4', md: '8' }}

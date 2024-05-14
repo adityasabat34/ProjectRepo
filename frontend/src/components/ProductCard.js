@@ -14,26 +14,23 @@ const ProductCard = ({ product }) => {
         border="solid black 1px"
         bgColor="white"
         _hover={{ shadow: 'lg' }}
-        width="full" // Adjust width to fill available space
       >
         <Image
           src={product.image}
           alt={product.name}
           w="full"
-          h="auto" // Set height to auto for responsive image
+          h="600px"
           objectFit="cover"
           borderTopLeftRadius="lg"
           borderTopRightRadius="lg"
         />
         <Flex py="5" px="4" direction="column" justifyContent="space-between">
-          <Heading as="h4" fontSize="md" mb="3">
-            {' '}
-            {/* Adjust font size */}
+          <Heading as="h4" fontSize="lg" mb="3">
             {product.name}
           </Heading>
           <Flex alignItems="center" justifyContent="space-between">
             <Rating color="yellow.500" value={product.rating} />
-            <Text fontSize="md" fontWeight="bold" color="blue.600">
+            <Text fontSize="2xl" fontWeight="bold" color="blue.600">
               ₹{product.price}
             </Text>
           </Flex>
