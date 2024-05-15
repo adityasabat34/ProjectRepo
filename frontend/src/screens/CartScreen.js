@@ -64,21 +64,19 @@ const CartScreen = () => {
             </Link>
           </Message>
         ) : (
-          <Flex direction="column">
+          <Flex direction="column" gap="5px">
             {cartItems.map((item) => (
-              <Grid
+              <Flex
                 key={item.product}
-                size="100%"
                 alignItems="center"
                 justifyContent="space-between"
                 borderBottom="1px"
                 borderColor="gray.200"
-                border="0.5px solid black"
                 py="4"
                 px="2"
                 rounded="lg"
                 _hover={{ bgColor: 'gray.50' }}
-                templateColumns={{ base: '1fr', md: '1fr 1fr 1fr 1fr' }}
+                border="1.5px solid black"
               >
                 {/* Product Image */}
                 <Image
@@ -91,17 +89,17 @@ const CartScreen = () => {
                   border="0.2px solid black"
                 />
 
-                {/* Product Name */}
-                <Text fontWeight="semibold" fontSize={{ base: 'md', md: 'lg' }}>
-                  <Link as={RouterLink} to={`/product/${item.product}`}>
-                    {item.name}
-                  </Link>
-                </Text>
-
-                {/* Product Price */}
-                <Text fontWeight="semibold" fontSize={{ base: 'md', md: 'lg' }}>
-                  ₹{item.price}
-                </Text>
+                {/* Product Name and Price */}
+                <Flex direction="column" flex="1" ml="4">
+                  <Text fontWeight="semibold" fontSize="md">
+                    <Link as={RouterLink} to={`/product/${item.product}`}>
+                      {item.name}
+                    </Link>
+                  </Text>
+                  <Text fontWeight="semibold" fontSize="md" color="blue.600">
+                    ₹{item.price}
+                  </Text>
+                </Flex>
 
                 {/* Quantity Select Box */}
                 <Select
@@ -109,7 +107,8 @@ const CartScreen = () => {
                   onChange={(e) =>
                     dispatch(addToCart(item.product, +e.target.value))
                   }
-                  width={{ base: '20', md: 'auto' }}
+                  width="14"
+                  border="1.5px solid black"
                 >
                   {[...Array(item.countInStock).keys()].map((i) => (
                     <option key={i + 1}>{i + 1}</option>
@@ -122,10 +121,11 @@ const CartScreen = () => {
                   colorScheme="red"
                   onClick={() => removeFromCartHandler(item.product)}
                   border="0.2px solid black"
+                  ml="4"
                 >
                   <Icon as={IoTrashBinSharp} />
                 </Button>
-              </Grid>
+              </Flex>
             ))}
           </Flex>
         )}
