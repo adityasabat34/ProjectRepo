@@ -89,6 +89,51 @@ const PlaceOrderScreen = () => {
               {cart.paymentMethod.toUpperCase()}
             </Text>
           </Box>
+
+          {/* Order Items */}
+          <Box borderBottom="1px" py="6" borderColor="gray.500" padding="5">
+            <Heading as="h2" mb="3" fontSize="2xl" fontWeight="semibold">
+              Order Items
+            </Heading>
+            <Box>
+              {cart.cartItems.length === 0 ? (
+                <Message>Your cart is empty</Message>
+              ) : (
+                <Box py="2">
+                  {cart.cartItems.map((item, idx) => (
+                    <Flex
+                      key={idx}
+                      alignItems="center"
+                      justifyContent="space-between"
+                    >
+                      <Flex py="2" alignItems="center">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          w="12"
+                          h="12"
+                          objectFit="cover"
+                          mr="6"
+                        />
+                        <Link
+                          fontWeight="bold"
+                          fontSize="md"
+                          as={RouterLink}
+                          to={`/products/${item.product}`}
+                        >
+                          {item.name}
+                        </Link>
+                      </Flex>
+
+                      <Text fontSize="md" fontWeight="semibold">
+                        {item.qty} x ₹{item.price} = ₹{+item.qty * item.price}
+                      </Text>
+                    </Flex>
+                  ))}
+                </Box>
+              )}
+            </Box>
+          </Box>
         </Flex>
 
         {/* Column 2 */}
