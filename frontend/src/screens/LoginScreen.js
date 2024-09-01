@@ -50,14 +50,21 @@ const LoginScreen = () => {
       alignItems="center"
       justifyContent="center"
       minHeight="100vh"
+      px={{ base: '4', md: '8' }} // Responsive padding
+      py={{ base: '6', md: '12' }} // Responsive padding for vertical spacing
     >
-      <FormContainer>
-        <Heading as="h1" mb="8" fontSize={{ base: '3xl', md: '4xl' }}>
+      <FormContainer maxWidth={{ base: '100%', md: '400px' }} mx="auto">
+        {' '}
+        {/* Set maximum width and center horizontally */}
+        <Heading
+          as="h1"
+          mb="8"
+          fontSize={{ base: '2xl', md: '4xl' }} // Responsive font size
+          textAlign="center" // Center align text for better look on small devices
+        >
           Login
         </Heading>
-
         {error && <Message type="error">{error}</Message>}
-
         <form onSubmit={submitHandler}>
           <FormControl id="email" mb="4">
             <FormLabel htmlFor="email">Email address</FormLabel>
@@ -67,6 +74,8 @@ const LoginScreen = () => {
               placeholder="username@domain.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              fontSize={{ base: 'sm', md: 'md' }} // Responsive font size
+              py={{ base: '2', md: '4' }} // Responsive padding
             />
           </FormControl>
 
@@ -78,6 +87,8 @@ const LoginScreen = () => {
               placeholder="*************"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              fontSize={{ base: 'sm', md: 'md' }} // Responsive font size
+              py={{ base: '2', md: '4' }} // Responsive padding
             />
           </FormControl>
 
@@ -87,14 +98,16 @@ const LoginScreen = () => {
             bgColor="red.900"
             isLoading={loading}
             w="100%"
+            py={{ base: '2', md: '4' }} // Responsive padding
+            fontSize={{ base: 'sm', md: 'md' }} // Responsive font size
           >
             Login
           </Button>
         </form>
-
         <Spacer height="4" />
-
-        <Text fontWeight="semibold" mt="4">
+        <Text fontWeight="semibold" mt="4" textAlign="center">
+          {' '}
+          {/* Center align text */}
           New Customer?{' '}
           <Link as={RouterLink} to="/register" color="blue.500">
             Click here to register

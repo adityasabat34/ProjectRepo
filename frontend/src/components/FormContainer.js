@@ -7,9 +7,11 @@ const FormContainer = ({ children, width = 'xl' }) => {
       boxShadow="md"
       rounded="md"
       bgColor="white"
-      p="10"
+      p={{ base: '6', md: '10' }}
       border="1.5px solid black"
-      width={width}
+      width={{ base: '95%', md: width }}
+      maxWidth="lg"
+      mx="auto"
     >
       {children}
     </Flex>
