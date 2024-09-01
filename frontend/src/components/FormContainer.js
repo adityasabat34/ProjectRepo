@@ -7,7 +7,7 @@ const FormContainer = ({ children, width = 'xl' }) => {
       boxShadow="md"
       rounded="md"
       bgColor="white"
-      p={{ base: '6', md: '10' }}
+      p={{ base: '6', md: '12' }}
       border="1.5px solid black"
       width={{ base: '95%', md: width }}
       maxWidth="lg"
