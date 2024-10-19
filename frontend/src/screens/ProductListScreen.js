@@ -83,7 +83,7 @@ const ProductListScreen = () => {
   return (
     <>
       <Flex
-        mb={{ base: '3', md: '5' }}
+        mb={{ base: '3', md: '6' }}
         direction={{ base: 'column', md: 'row' }}
         alignItems={{ base: 'stretch', md: 'center' }}
         justifyContent="space-between"
