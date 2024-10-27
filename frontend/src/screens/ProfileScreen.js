@@ -85,7 +85,7 @@ const ProfileScreen = () => {
     >
       <Flex
         w="full"
-        alignItems="center"
+        alignItems="flex-start"
         justifyContent="center"
         py="5"
         order={{ base: 2, md: 1 }}
