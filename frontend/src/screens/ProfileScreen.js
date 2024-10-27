@@ -14,28 +14,29 @@ import {
   Thead,
   Icon,
   Th,
-} from '@chakra-ui/react';
-import FormContainer from '../components/FormContainer';
-import Loader from '../components/Loader';
-import { listMyOrder } from '../actions/orderAction';
-import Message from '../components/Message';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { updateUserProfile, getUserDetails } from '../actions/userAction';
-import { USER_DETAILS_RESET } from '../constants/userConstants';
-import { IoWarning } from 'react-icons/io5';
-import { ORDER_DETAILS_RESET } from '../constants/orderConstants';
+  Box,
+} from "@chakra-ui/react";
+import FormContainer from "../components/FormContainer";
+import Loader from "../components/Loader";
+import { listMyOrder } from "../actions/orderAction";
+import Message from "../components/Message";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { updateUserProfile, getUserDetails } from "../actions/userAction";
+import { USER_DETAILS_RESET } from "../constants/userConstants";
+import { IoWarning } from "react-icons/io5";
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants";
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -53,7 +54,7 @@ const ProfileScreen = () => {
     dispatch({ type: ORDER_DETAILS_RESET });
 
     if (!userInfo) {
-      navigate('/login');
+      navigate("/login");
     } else {
       if (!user.name) {
         dispatch(getUserDetails());
@@ -69,7 +70,7 @@ const ProfileScreen = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
+      setMessage("Passwords do not match");
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
       dispatch({ type: USER_DETAILS_RESET });
@@ -78,9 +79,9 @@ const ProfileScreen = () => {
 
   return (
     <Grid
-      templateColumns={{ base: '1fr', md: '1fr 1fr' }}
-      py={{ base: '5', md: '10' }}
-      gap={{ base: '5', md: '10' }}
+      templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+      py={{ base: "5", md: "10" }}
+      gap={{ base: "5", md: "10" }}
     >
       <Flex
         w="full"
@@ -88,9 +89,10 @@ const ProfileScreen = () => {
         justifyContent="center"
         py="5"
         order={{ base: 2, md: 1 }}
+        px={{ base: 4, md: 0 }}
       >
-        <FormContainer>
-          <Heading as="h1" mb="8" fontSize="3xl">
+        <FormContainer maxW={{ base: "100%", md: "80%", lg: "60%" }}>
+          <Heading as="h1" mb="8" fontSize={{ base: "2xl", md: "3xl" }}>
             User Profile
           </Heading>
 
@@ -98,7 +100,7 @@ const ProfileScreen = () => {
           {message && <Message type="error">{message}</Message>}
 
           <form onSubmit={submitHandler}>
-            <FormControl id="name">
+            <FormControl id="name" mb="4">
               <FormLabel htmlFor="name">Your Name</FormLabel>
               <Input
                 id="name"
@@ -106,12 +108,11 @@ const ProfileScreen = () => {
                 placeholder="Your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                width="full"
               />
             </FormControl>
 
-            <Spacer h="3" />
-
-            <FormControl id="email">
+            <FormControl id="email" mb="4">
               <FormLabel htmlFor="email">Email address</FormLabel>
               <Input
                 id="email"
@@ -119,12 +120,11 @@ const ProfileScreen = () => {
                 placeholder="username@domain.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                width="full"
               />
             </FormControl>
 
-            <Spacer h="3" />
-
-            <FormControl id="password">
+            <FormControl id="password" mb="4">
               <FormLabel htmlFor="password">Password</FormLabel>
               <Input
                 id="password"
@@ -132,12 +132,11 @@ const ProfileScreen = () => {
                 placeholder="************"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                width="full"
               />
             </FormControl>
 
-            <Spacer h="3" />
-
-            <FormControl id="confirmPassword">
+            <FormControl id="confirmPassword" mb="4">
               <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
               <Input
                 id="confirmPassword"
@@ -145,6 +144,7 @@ const ProfileScreen = () => {
                 placeholder="************"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                width="full"
               />
             </FormControl>
 
@@ -154,7 +154,7 @@ const ProfileScreen = () => {
               bgColor="red.900"
               mt="4"
               isLoading={loading}
-              w="full"
+              width="full"
             >
               Update
             </Button>
@@ -163,7 +163,7 @@ const ProfileScreen = () => {
       </Flex>
 
       <Flex direction="column" order={{ base: 1, md: 2 }}>
-        <Heading as="h2" mb="4">
+        <Heading as="h2" mb="4" fontSize={{ base: "lg", md: "2xl" }}>
           My Orders
         </Heading>
 
@@ -172,45 +172,48 @@ const ProfileScreen = () => {
         ) : errorOrders ? (
           <Message type="error">{error}</Message>
         ) : (
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>ID</Th>
-                <Th>DATE</Th>
-                <Th>TOTAL</Th>
-                <Th>PAID</Th>
-                <Th>DELIVERED</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-
-            <Tbody>
-              {orders.map((order) => (
-                <Tr key={order._id}>
-                  <Td>{order._id}</Td>
-                  <Td>{new Date(order.createdAt).toDateString()}</Td>
-                  <Td>₹{order.totalPrice}</Td>
-                  <Td>
-                    {order.isPaid ? (
-                      new Date(order.paidAt).toDateString
-                    ) : (
-                      <Icon as={IoWarning} color="red" />
-                    )}
-                  </Td>
-                  <Td>
-                    <Button
-                      as={RouterLink}
-                      to={`/order/${order._id}`}
-                      colorScheme="teal"
-                      size="sm"
-                    >
-                      Details
-                    </Button>
-                  </Td>
+          <Box overflowX="auto">
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>DATE</Th>
+                  <Th>TOTAL</Th>
+                  <Th>PAID</Th>
+                  <Th>DELIVERED</Th>
+                  <Th></Th>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
+              </Thead>
+
+              <Tbody>
+                {orders.map((order) => (
+                  <Tr key={order._id}>
+                    <Td>{order._id}</Td>
+                    <Td>{new Date(order.createdAt).toLocaleDateString()}</Td>
+                    <Td>₹{order.totalPrice}</Td>
+                    <Td>
+                      {order.isPaid ? (
+                        new Date(order.paidAt).toLocaleDateString()
+                      ) : (
+                        <Icon as={IoWarning} color="red" />
+                      )}
+                    </Td>
+                    <Td>
+                      <Button
+                        as={RouterLink}
+                        to={`/order/${order._id}`}
+                        colorScheme="teal"
+                        size="sm"
+                        width="full"
+                      >
+                        Details
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </Box>
         )}
       </Flex>
     </Grid>
