@@ -1,36 +1,38 @@
-import { Box, Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
-import Rating from './Rating';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import Rating from "./Rating";
+import { Link as RouterLink } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
     <Link
       as={RouterLink}
       to={`/product/${product._id}`}
-      _hover={{ textDecor: 'none' }}
+      _hover={{ textDecor: "none" }}
     >
       <Box
         borderRadius="lg"
         border="solid black 1px"
         bgColor="white"
-        _hover={{ shadow: 'lg' }}
+        _hover={{ shadow: "lg" }}
+        display="flex"
+        flexDirection="column"
       >
         <Image
           src={product.image}
           alt={product.name}
           w="full"
-          h="600px"
+          h={{ base: "200px", md: "250px" }} // Responsive height
           objectFit="cover"
           borderTopLeftRadius="lg"
           borderTopRightRadius="lg"
         />
-        <Flex py="5" px="4" direction="column" justifyContent="space-between">
+        <Flex py="2" px="2" direction="column" justifyContent="space-between">
           <Heading as="h4" fontSize="lg" mb="3">
             {product.name}
           </Heading>
           <Flex alignItems="center" justifyContent="space-between">
             <Rating color="yellow.500" value={product.rating} />
-            <Text fontSize="2xl" fontWeight="bold" color="blue.600">
+            <Text fontSize="xl" fontWeight="bold" color="blue.600">
               ₹{product.price}
             </Text>
           </Flex>

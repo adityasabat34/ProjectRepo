@@ -1,10 +1,10 @@
-import { Grid, Heading } from '@chakra-ui/react';
-import ProductCard from '../components/ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { listProducts } from '../actions/productActions';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import { Grid, Heading } from "@chakra-ui/react";
+import ProductCard from "../components/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { listProducts } from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const HomeScreen = () => {
       <Heading
         as="h2"
         mb="8"
-        fontSize={{ base: 'xl', md: '2xl' }}
+        fontSize={{ base: "xl", md: "2xl" }}
         p="1"
         textAlign="center"
       >
@@ -35,12 +35,13 @@ const HomeScreen = () => {
       ) : (
         <Grid
           templateColumns={{
-            base: '1fr',
-            md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
+            base: "repeat(2, 1fr)", // 1fr 1fr on mobile
+            sm: "repeat(2, 1fr)", // 1fr 1fr on small screens
+            md: "repeat(3, 1fr)", // 3 columns on medium screens
+            lg: "repeat(4, 1fr)", // 4 columns on large screens
           }}
-          gap={{ base: '4', md: '8' }}
-          justifyContent="center" // Center grid items horizontally
+          gap={{ base: "4", md: "8" }} // Adjust gaps for different screen sizes
+          justifyContent="center"
         >
           {products.map((prod) => (
             <ProductCard key={prod._id} product={prod} />
