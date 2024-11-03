@@ -32,7 +32,11 @@ const ProductCard = ({ product }) => {
           </Heading>
           <Flex alignItems="center" justifyContent="space-between">
             <Rating color="yellow.500" value={product.rating} />
-            <Text fontSize="xl" fontWeight="bold" color="blue.600">
+            <Text
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="bold"
+              color="blue.600"
+            >
               ₹{product.price}
             </Text>
           </Flex>
