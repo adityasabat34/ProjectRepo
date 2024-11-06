@@ -17,7 +17,7 @@ function ProductCarousel() {
 
   return (
     <Box
-      maxW={{ base: "full", md: "500px" }}
+      maxW={{ base: "full", md: "600px" }}
       mx="auto"
       borderWidth="1px"
       borderRadius="lg"
