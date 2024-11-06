@@ -32,7 +32,6 @@ const App = () => {
         height="max-content"
         bgGradient="linear(to-r, gray.200, gray.400, white, gray.400, gray.200)"
       >
-        <ProductCarousel />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/product/:id" element={<ProductScreen />} />

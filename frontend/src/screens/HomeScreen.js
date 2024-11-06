@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { listProducts } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import ProductCarousel from "../components/Carasoul";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <ProductCarousel />
       <Heading
         as="h2"
         mb="8"
