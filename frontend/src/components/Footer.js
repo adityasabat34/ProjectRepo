@@ -49,7 +49,7 @@ const Footer = () => {
       justifyContent="space-between"
       alignItems="center"
       direction={{ base: "column", md: "row" }}
-      bgGradient="linear(to-r, gray.100, gray.200, white, gray.400, gray.600)"
+      bgGradient="linear(to-r, gray.200, gray.200, gray.500, gray.400, gray.600)"
       borderTop="2px solid black"
       borderTopRadius="lg"
     >

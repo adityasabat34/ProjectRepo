@@ -17,7 +17,6 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
-import ProductCarousel from "./components/Carasoul";
 
 const App = () => {
   return (

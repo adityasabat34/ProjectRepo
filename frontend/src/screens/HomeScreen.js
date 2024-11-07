@@ -19,10 +19,19 @@ const HomeScreen = () => {
 
   return (
     <>
+      <Heading
+        as="h2"
+        mb="4"
+        fontSize={{ base: "xl", md: "2xl" }}
+        p="1"
+        textAlign="center"
+      >
+        Upcoming Launches
+      </Heading>
       <ProductCarousel />
       <Heading
         as="h2"
-        mb="8"
+        mb="4"
         fontSize={{ base: "xl", md: "2xl" }}
         p="1"
         textAlign="center"

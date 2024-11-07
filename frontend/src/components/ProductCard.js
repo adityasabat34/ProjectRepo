@@ -27,13 +27,13 @@ const ProductCard = ({ product }) => {
           borderTopRightRadius="lg"
         />
         <Flex py="2" px="2" direction="column" justifyContent="space-between">
-          <Heading as="h4" fontSize="lg" mb="3">
+          <Heading as="h4" fontSize={{ base: "sm", md: "lg" }} mb="3">
             {product.name}
           </Heading>
           <Flex alignItems="center" justifyContent="space-between">
             <Rating color="yellow.500" value={product.rating} />
             <Text
-              fontSize={{ base: "md", md: "lg" }}
+              fontSize={{ base: "sm", md: "lg" }}
               fontWeight="bold"
               color="blue.600"
             >
