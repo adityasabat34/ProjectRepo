@@ -1,5 +1,5 @@
-import asyncHandler from 'express-async-handler';
-import Order from '../models/orderModel.js';
+import asyncHandler from "express-async-handler";
+import Order from "../models/orderModel.js";
 
 /**
  * @desc   Create new order
@@ -20,7 +20,7 @@ const createOrder = asyncHandler(async (req, res) => {
 
   if (orderItems && orderItems.length === 0) {
     res.status(400);
-    throw new Error('No order found');
+    throw new Error("No order found");
   } else {
     const order = new Order({
       orderItems,
@@ -46,15 +46,15 @@ const createOrder = asyncHandler(async (req, res) => {
 
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
-    'user',
-    'name email'
+    "user",
+    "name email"
   );
 
   if (order) {
     res.json(order);
   } else {
     res.status(404);
-    throw new Error();
+    throw new Error("enable to get order id");
   }
 });
 
@@ -68,11 +68,12 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    (order.isPaid = true), (order.paidAt = Date.now());
+    order.isPaid = true;
+    order.paidAt = Date.now();
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
-      upadte_time: req.body.upadte_time,
+      update_time: req.body.update_time,
       email_address: req.body.email_address,
     };
 
@@ -80,7 +81,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Order not found');
+    throw new Error("Order not found");
   }
 });
 
@@ -102,7 +103,7 @@ const getMyOrder = asyncHandler(async (req, res) => {
  */
 
 const getAllOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'name email');
+  const orders = await Order.find({}).populate("user", "name email");
   res.json(orders);
 });
 
@@ -123,7 +124,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Order not Found');
+    throw new Error("Order not Found");
   }
 });
 

@@ -1,6 +1,6 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import {
   productCreateReducer,
   productDeleteReducer,
@@ -8,8 +8,8 @@ import {
   productListReducer,
   productReviewCreateReducer,
   productUpdateReducer,
-} from './reducers/productReducers';
-import { cartReducer } from './reducers/cartReducer';
+} from "./reducers/productReducers";
+import { cartReducer } from "./reducers/cartReducer";
 import {
   userDeleteReducer,
   userDetailsReducer,
@@ -19,7 +19,7 @@ import {
   userRegisterReducer,
   userUpdateProfileReducer,
   userUpdateReducer,
-} from './reducers/userReducer';
+} from "./reducers/userReducer";
 import {
   orderCreateReducer,
   orderDeliverReducer,
@@ -27,7 +27,7 @@ import {
   orderListReducer,
   orderMyListReducer,
   orderPayReducer,
-} from './reducers/orderReducer';
+} from "./reducers/orderReducer";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -53,27 +53,27 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-  ? JSON.parse(localStorage.getItem('shippingAddress'))
+const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
   : {};
 
-const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
-  ? JSON.parse(localStorage.getItem('paymentMethod'))
-  : 'paypal';
+const paymentMethodFromStorage = localStorage.getItem("paymentMethod")
+  ? JSON.parse(localStorage.getItem("paymentMethod"))
+  : "paypal";
 
 const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
-    paymentMethod: paymentMethodFromStorage,
+    paymentMethod: paymentMethodFromStorage, //preloaded data during login , register and refresh the screen
   },
   userLogin: { userInfo: userInfoFromStorage },
 };
